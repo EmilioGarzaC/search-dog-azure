@@ -3,6 +3,7 @@ import os
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
 import pandas as pd
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -49,19 +50,23 @@ def index():
 
 @app.route('/hello', methods=['POST'])
 def hello():
-   name = request.form.get('name')
-   searchResults = search(
-       palabra=name, 
-       path_diccionario='output-files/diccionario.txt', 
-       path_documentos='output-files/index_documents.txt'
+
+    name = request.form.get('name')
+    if name is None:
+        data = request.json
+        name = data.get('name')
+    searchResults = search(
+        palabra=name, 
+        path_diccionario='output-files/diccionario.txt', 
+        path_documentos='output-files/index_documents.txt'
     )
 
-   if name:
-       print('Request for search page received with token=%s' % name)
-       return render_template('hello.html', name = name, searchResults = searchResults)
-   else:
-       print('Request for search page received with no token or blank token -- redirecting')
-       return redirect(url_for('index'))
+    if name:
+        print('Request for search page received with token=%s' % name)
+        return render_template('hello.html', name = name, searchResults = searchResults)
+    else:
+        print('Request for search page received with no token or blank token -- redirecting')
+        return redirect(url_for('index'))
 
 
 @app.route('/favicon.ico')
