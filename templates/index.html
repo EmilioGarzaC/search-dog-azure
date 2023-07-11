@@ -3,27 +3,79 @@
     <title>SearchDog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+      .center-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      html, body {
+      height: 100%;
+    }
+
+    .main-frame {
+      height: 80%;
+    }
+
+    .main-container {
+      height: 100%;
+    }
+
+    p{
+      margin: 4px;
+      font-size: 14px;
+    }
+
+    .bottom-container {
+    position: relative;
+    width: 100%;
+    }
+
+    .bottom-content {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-weight: bold;
+    margin: 12px;
+    } 
+
+    
+    </style>
 </head>
 <html>
    <body>
-     <main>
-        <div class="px-4 py-3 my-2 text-center">
-            <!-- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-            <h1 class="display-6 fw-bold text-primary">SearchDog</h1>            
-          </div>
-        <form method="post" action="{{url_for('hello')}}">
-            <div class="col-md-6 mx-auto text-center">
-                <label for="name" class="form-label fw-bold fs-5">Enter your search query:</label>
-
-                <!-- <p class="lead mb-2">Could you please tell me your name?</p> -->
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center align-items-center my-1">
-                    <input type="text" class="form-control" id="name" name="name" style="max-width: 256px;">
-                  </div>            
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center my-2">
-                  <button type="submit" class="btn btn-primary btn-lg px-4 gap-3">Search</button>
-                </div>            
+     <main class="main-frame">
+      <div class="container main-container">
+        <div class="center-content">
+          <div style="width: 60%;">
+            <div class="center-content">
+              <img src="../static/images/search dog.png" style="width:60%">           
             </div>
-        </form>
+            <form method="post" action="{{url_for('results')}}">
+                <div class="center-content" style="display: flex;">
+                    <img src="../static/images/lupa.png" alt="lupa.png" style="width:30px;height:30px; margin: 4px;">             
+                    <input type="text" class="form-control" id="name" name="name" style="min-width: 70%;  margin: 4px;  background-color: rgb(247, 247, 247);">
+                    <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" style="margin: 4px; background-color: #946A44; border-color: #D9AD93;">Go!</button>
+                </div>
+            </form>
+          </div>
+          </div>
+        </div>
      </main>      
+     <div style="display: flex; height: 175px">
+      <div style="width: 200px";>
+        <p style="font-weight: bold; ">Project by</p>
+        <p>Emilio Garza</p>
+        <p>Andrés Montoya</p>
+        <p>Diego Aguirre Uribe</p>
+        <p>Perla Alejandra Garza López</p>
+        <p>Fernando Arjona Lira</p>          
+      </div>
+      <div class="bottom-container">
+        <p class="bottom-content">2023  Proyectos de Ingeniería</p>
+      </div>
+     </div>
    </body>
 </html>
