@@ -37,8 +37,7 @@ def search(palabra, path_diccionario, path_documentos):
         }
     else:
         print(f"{palabra} no existe en el diccionario")
-        return False
-    
+        return {'documentos':[]}    
     
 # > FLASK ROUTES
 
@@ -48,8 +47,8 @@ def index():
    return render_template('index.html')
 
 
-@app.route('/hello', methods=['POST'])
-def hello():
+@app.route('/results', methods=['POST'])
+def results():
 
     name = request.form.get('name')
     if name is None:
@@ -60,10 +59,12 @@ def hello():
         path_diccionario='output-files/diccionario.txt', 
         path_documentos='output-files/index_documents.txt'
     )
+    print(searchResults['documentos'])
+    documentos = searchResults['documentos'] if len(searchResults['documentos']) != 0 else ['no results']
 
     if name:
         print('Request for search page received with token=%s' % name)
-        return render_template('hello.html', name = name, searchResults = searchResults)
+        return render_template('results.html', name = name, documentos = documentos)
     else:
         print('Request for search page received with no token or blank token -- redirecting')
         return redirect(url_for('index'))

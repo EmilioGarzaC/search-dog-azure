@@ -1,0 +1,85 @@
+<!doctype html>
+<head>
+    <title>SearchDog - {{name}}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        .center-screen {
+          position: relative; 
+          left: 40%;
+          transform: translateX(-40%);
+        }
+
+        p {
+          font-size: 24px;
+        }
+
+        .highlight{
+          color: #D9AD93;
+          font-weight: bold;
+        }
+
+        .link{
+          font-weight: bold;
+          font-size: 24px;
+          text-decoration: underline;
+          color: #D9AD93;
+        }
+
+        .dots{
+          font-weight: bold;
+          font-size: 24px;
+          color: #D9AD93;
+        }
+
+        .image-link {
+          display: inline-block; 
+          width: 10%;
+        }
+
+        .image-fill {
+          width: 100%;
+          height: 100%; 
+          object-fit: cover; 
+        }
+
+        .navigation-container{
+          display: flex;
+          justify-content: center;
+          align-items: center; 
+        }
+
+    </style>
+</head>
+<html>
+   <body>
+     <main>
+      <div style="display: flex;">
+        <a href="{{ url_for('index') }}" class="image-link">
+          <img src="../static/images/search dog.png" class="image-fill"/>           
+        </a>
+        <form method="post" action="{{url_for('results')}}" style="width: 100%;">
+          <div class="center-screen" style="display: flex; width: 50%;">
+              <img src="../static/images/lupa.png" alt="lupa.png" style="width:30px;height:30px; margin: 4px;">             
+              <input type="text" class="form-control" id="name" name="name" style="min-width: 70%;  margin: 4px;  background-color: rgb(247, 247, 247);">
+              <button type="submit" class="btn btn-primary btn-lg px-4 gap-3" style="margin: 4px; background-color: #946A44; border-color: #D9AD93;">Go!</button>
+          </div>
+        </form>
+      </div>
+        
+
+        <div class="px-4 py-3 my-2 text-center" style="flex-grow: 1;">
+            <p>Showing results for <span class="highlight">{{name}}</span></p>
+          <p class="fs-5">
+              {% for file in documentos %}
+                <div>
+                  <a href="../static/files/{{file}}" class="link">{{ file }}</a>
+                </div>
+              {% endfor %}
+          </p>
+        </div>
+
+        
+     </main>      
+   </body>
+</html>
