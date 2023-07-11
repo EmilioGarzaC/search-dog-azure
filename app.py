@@ -25,8 +25,9 @@ def search(palabra, path_diccionario, path_documentos):
         df_documentos = pd.read_csv(path_documentos)
         for i in range(p_index_start, p_index_end):
             doc_row = df_documentos.loc[df_documentos['ID'] == i]
-            doc_name = doc_row["DOCUMENTO"].values[0]
-            results.append(doc_name)
+            if len(doc_row['DOCUMENTO'].values) > 0:
+                doc_name = doc_row["DOCUMENTO"].values[0]
+                results.append(doc_name)
         print("RESULTADOS DE BUSQUEDA")
         print(results)
         
