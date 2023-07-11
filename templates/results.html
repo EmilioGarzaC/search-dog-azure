@@ -69,17 +69,22 @@
         
 
         <div class="px-4 py-3 my-2 text-center" style="flex-grow: 1;">
-            <p>Showing results for <span class="highlight">{{name}}</span></p>
-          <p class="fs-5">
+            {% if documentos|length > 0 %}
+              <p>Showing results for <span class="highlight">{{name}}</span></p>
+            {%endif%}
+            {% if 1 > documentos|length  %}
+              <p>No results found for <span class="highlight">{{name}}</span></p>
+            {%endif%}
+          <div>
+            {% if documentos|length > 0 %}
               {% for file in documentos %}
                 <div>
                   <a href="../static/files/{{file}}" class="link">{{ file }}</a>
                 </div>
               {% endfor %}
-          </p>
+            {%endif%}
+          </div>
         </div>
-
-        
      </main>      
    </body>
 </html>

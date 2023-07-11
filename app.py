@@ -60,7 +60,7 @@ def results():
         path_documentos='output-files/index_documents.txt'
     )
     print(searchResults['documentos'])
-    documentos = searchResults['documentos'] if len(searchResults['documentos']) != 0 else ['no results']
+    documentos = searchResults['documentos'] if len(searchResults['documentos']) != 0 else []
 
     if name:
         print('Request for search page received with token=%s' % name)
