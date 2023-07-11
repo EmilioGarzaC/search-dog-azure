@@ -61,7 +61,7 @@ def results():
     )
     print(searchResults['documentos'])
     documentos = searchResults['documentos'] if len(searchResults['documentos']) != 0 else []
-
+    documentos = [*set(documentos)]
     if name:
         print('Request for search page received with token=%s' % name)
         return render_template('results.html', name = name, documentos = documentos)
