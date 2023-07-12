@@ -39,11 +39,12 @@ def search(palabra, path_diccionario, path_limpio, path_documentos, path_pesos):
             ordenados = pesos.sort_values(by='PESO', ascending=False)
             print("ORDENADOS")
             print(ordenados)
-            ordenados = ordenados[0:10]
 
+            #takes the first 10 documents
+            ordenados = ordenados[0:10]
             documentos = ordenados["DOCUMENTO"].values.tolist()
 
-            print("DOCUMENTOS::::")
+            print("DOCUMENTOS:::")
             print(documentos)
             return documentos
     else:
