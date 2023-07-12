@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # > FUNCIONES
 
-def search(palabra, path_diccionario, path_limpio, path_documentos):
+def search(palabra, path_diccionario, path_limpio, path_documentos, path_pesos):
     #Indica al usuario escribir la palabra a buscar
     #palabra = input("Escribe la palabra a buscar: ")
     #La palabra se cambia a minúsculas en caso de que no sea así
@@ -33,12 +33,19 @@ def search(palabra, path_diccionario, path_limpio, path_documentos):
                     results.append(doc_name)
             print("RESULTADOS DE BUSQUEDA")
             print(results)
-            
-            return {
-                'documentos': results,
-                'p_start': p_index_start,
-                'p_end': p_index_end,
-            }
+
+            pesos = pd.read_csv(path_pesos)
+            pesos = pesos[p_index_start:p_index_end]
+            ordenados = pesos.sort_values(by='PESO', ascending=False)
+            print("ORDENADOS")
+            print(ordenados)
+            ordenados = ordenados[0:10]
+
+            documentos = ordenados["DOCUMENTO"].values.tolist()
+
+            print("DOCUMENTOS::::")
+            print(documentos)
+            return documentos
     else:
         print(f"{palabra} no existe en el diccionario")
         return {'documentos':[]}    
@@ -62,13 +69,11 @@ def results():
         palabra=name, 
         path_diccionario='output-files/diccionario.txt', 
         path_limpio='output-files/diccionarioLimpio.txt', 
-        path_documentos='output-files/index_documents.txt'
+        path_documentos='output-files/index_documents.txt',
+        path_pesos='output-files/pesos.txt'
     )
     if (len(name) < 20):
-        print(searchResults['documentos'])
-        documentos = searchResults['documentos'] if len(searchResults['documentos']) != 0 else []
-        documentos = [*set(documentos)]
-        documentos = documentos[:10]
+        documentos = searchResults
     else:
         print("token too long!!")
         documentos = []
