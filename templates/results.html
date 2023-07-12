@@ -75,6 +75,9 @@
             {% if 1 > documentos|length  %}
               <p>No results found for <span class="highlight">{{name}}</span></p>
             {%endif%}
+            {% if name|length > 19 %}
+              <p>Please try using a shorter word.</p>
+            {%endif%}
           <div>
             {% if documentos|length > 0 %}
               {% for file in documentos %}
