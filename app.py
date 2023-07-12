@@ -48,7 +48,7 @@ def search(palabra, path_diccionario, path_limpio, path_documentos, path_pesos):
             return documentos
     else:
         print(f"{palabra} no existe en el diccionario")
-        return {'documentos':[]}    
+        return []    
     
 # > FLASK ROUTES
 
