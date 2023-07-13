@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'searchdog'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_16A8F9B620814970BCA44D5767236EB3 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_E3196F22E7004E6E99A6A368E3C2630B }}
